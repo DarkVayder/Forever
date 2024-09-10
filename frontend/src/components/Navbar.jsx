@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { assets } from '../assets/assets';
 import { Link, NavLink } from 'react-router-dom';
+import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
@@ -62,12 +63,7 @@ const Navbar = () => {
         } transition-transform duration-300 ease-in-out z-50`}
       >
         <div className='flex justify-end p-5'>
-          <img
-            onClick={() => setVisible(false)}
-            src={assets.close_icon} // Close icon for closing sidebar
-            className='w-5 cursor-pointer'
-            alt='Close'
-          />
+           <IoMdClose onClick={() => setVisible(false)} className='w-5 cursor-pointer'/>
         </div>
         <ul className='flex flex-col gap-5 text-sm text-gray-700 px-5'>
           <NavLink to='/' className='flex flex-col' onClick={() => setVisible(false)}>
