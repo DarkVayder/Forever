@@ -27,7 +27,7 @@ const Footer = () => {
       <div>
         <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
         <ul className='flex flex-col gap-1 text-gray-600'>
-          <li>+234 000 111 222</li>
+          <li className='cursor-pointer' >+234 000 111 222</li>
           <li><a href='mailto:info@forever.com'>info@forever.com</a></li>
         </ul>
       </div>

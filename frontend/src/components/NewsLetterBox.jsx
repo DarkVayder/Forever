@@ -5,7 +5,7 @@ const NewsLetterBox = () => {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    // Handle the form submission logic here, like making an API call
+    // Handle the form submission logic
     console.log('Subscribed with email:', email);
     setEmail('');
   };
