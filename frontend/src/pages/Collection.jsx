@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import { ShopContext } from '../context/ShopContext';
 import dropdownIcon from '../assets/dropdown_icon.png';
 import Title from '../components/Title';
@@ -9,8 +10,8 @@ const Collection = () => {
   const [sortOrder, setSortOrder] = useState('relevant');
   const [filters, setFilters] = useState({ categories: [], types: [], search: '' });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  // Function to handle sorting the products
   const sortProducts = (products, order) => {
     switch (order) {
       case 'low-high':
@@ -24,7 +25,6 @@ const Collection = () => {
     }
   };
 
-  // Function to handle filtering products by category, type, and search query
   const filterProducts = (products) => {
     return products.filter((product) => {
       const matchesCategory =
@@ -37,7 +37,6 @@ const Collection = () => {
     });
   };
 
-  // Function to handle filter updates
   const handleFilterChange = (filterKey, value) => {
     setFilters((prev) => {
       const newFilter = prev[filterKey].includes(value)
@@ -47,23 +46,19 @@ const Collection = () => {
     });
   };
 
-  // Function to handle search query change
   const handleSearchChange = (event) => {
     setFilters((prev) => ({ ...prev, search: event.target.value }));
   };
 
-  // Apply filters and sorting
   const filteredProducts = filterProducts(products);
   const sortedProducts = sortProducts(filteredProducts, sortOrder);
 
-  // Set loading state to false after applying filters and sorting (can be customized based on API fetch)
   useEffect(() => {
     setLoading(false);
   }, [sortedProducts]);
 
   return (
     <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 pt-10 border-t">
-      {/* Filters Section */}
       <div className="sm:min-w-60 w-full sm:w-1/4">
         <div className="my-4 text-xl flex items-center justify-between cursor-pointer border-b-2 border-gray-300 pb-2">
           <span className="font-semibold">FILTERS</span>
@@ -77,11 +72,7 @@ const Collection = () => {
         </div>
 
         {/* Search Bar */}
-        <div
-          className={`border border-gray-200 rounded-md px-5 py-4 mb-4 ${
-            showFilter ? '' : 'hidden'
-          } sm:block`}
-        >
+        <div className={`border border-gray-200 rounded-md px-5 py-4 mb-4 ${showFilter ? '' : 'hidden'} sm:block`}>
           <input
             type="text"
             placeholder="Search..."
@@ -92,11 +83,7 @@ const Collection = () => {
         </div>
 
         {/* Category Filter */}
-        <div
-          className={`border border-gray-200 rounded-md px-5 py-4 ${
-            showFilter ? '' : 'hidden'
-          } sm:block`}
-        >
+        <div className={`border border-gray-200 rounded-md px-5 py-4 ${showFilter ? '' : 'hidden'} sm:block`}>
           <p className="mb-3 text-md font-medium text-gray-800">Categories</p>
           <div className="flex flex-col gap-3 text-sm">
             {['Men', 'Women', 'Kids'].map((category) => (
@@ -114,11 +101,7 @@ const Collection = () => {
         </div>
 
         {/* Type Filter */}
-        <div
-          className={`border border-gray-200 rounded-md px-5 py-4 mt-4 ${
-            showFilter ? '' : 'hidden'
-          } sm:block`}
-        >
+        <div className={`border border-gray-200 rounded-md px-5 py-4 mt-4 ${showFilter ? '' : 'hidden'} sm:block`}>
           <p className="mb-3 text-md font-medium text-gray-800">Types</p>
           <div className="flex flex-col gap-3 text-sm">
             {['Topwear', 'Bottomwear', 'Winterwear'].map((type) => (
@@ -160,7 +143,8 @@ const Collection = () => {
             sortedProducts.map((product) => (
               <div
                 key={product._id}
-                className="border rounded-md p-4 shadow-sm transition transform hover:scale-105"
+                className="border rounded-md p-4 shadow-sm transition transform hover:scale-105 cursor-pointer"
+                onClick={() => navigate(`/product/${product._id}`)} // Navigate to product page on click
               >
                 <img
                   src={product.image[0]}
