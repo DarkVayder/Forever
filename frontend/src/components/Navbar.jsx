@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-
+  
   return (
     <div className='relative flex items-center justify-between py-5 font-medium'>
       <Link to='/' ><img src={assets.logo} className='w-36' alt='Logo' /></Link>
@@ -32,8 +32,7 @@ const Navbar = () => {
 
       {/* Right-side icons */}
       <div className='flex items-center gap-6'>
-        <img src={assets.search_icon} className='w-5 cursor-pointer' alt='search' />
-
+        
         <div className='group relative'>
           <img src={assets.profile_icon} className='w-5 cursor-pointer' alt='Profile' />
           <div className='group-hover:block hidden absolute right-0 pt-4'>
