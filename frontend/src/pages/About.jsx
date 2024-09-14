@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaInstagram, FaPinterest } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
+import { FaArrowLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 // Sample customer reviews
 const reviews = [
-  { id: 1, name: 'Alice W.', review: 'Amazing quality and fast delivery!', rating: 5 },
-  { id: 2, name: 'John D.', review: 'Customer service was top-notch.', rating: 4 },
-  { id: 3, name: 'Samantha B.', review: 'Beautiful packaging and great selection.', rating: 5 },
+  { id: 1, name: 'John Snow.', review: 'Amazing quality and fast delivery!', rating: 5 },
+  { id: 2, name: 'Harry Potter.', review: 'Customer service was top-notch.', rating: 4 },
+  { id: 3, name: 'Lincoln Burrows.', review: 'Beautiful packaging and great selection.', rating: 5 },
 ];
 
 // Fun facts about your store or products
@@ -25,6 +27,7 @@ const faqData = [
 const About = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [randomFact, setRandomFact] = useState('');
+  const navigate = useNavigate();
 
   // Rotate fun facts
   useEffect(() => {
@@ -44,6 +47,16 @@ const About = () => {
 
   return (
     <div className="container mx-auto py-12 px-4">
+      {/* Back Button */}
+      <div className="mb-4">
+        <button
+          onClick={() => navigate(-1)} 
+          className="flex items-center text-gray-700 hover:underline font-medium"
+        >
+          <FaArrowLeft className="mr-2" /> Back
+        </button>
+      </div>
+
       {/* Brand Story Section */}
       <section className="mb-12 text-center">
         <h2 className="text-4xl font-bold mb-4">Our Story</h2>
