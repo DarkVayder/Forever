@@ -12,6 +12,10 @@ a.active hr{
     font-family: "Nerko One", cursive;
 }
 
+::-webkit-scrollbar{
+    display: none;
+}
+
 .prata-regular {
     font-family: "Prata", serif;
     font-weight: 400;
