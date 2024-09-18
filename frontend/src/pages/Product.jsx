@@ -6,10 +6,11 @@ import { FaArrowLeft, FaShoppingCart, FaPlus, FaMinus, FaTrash } from 'react-ico
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { assets } from '../assets/assets';
+import RelatedProducts from '../components/RelatedProducts';
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, addToCart, removeFromCart, cart } = useContext(ShopContext);
+  const { products, addToCart, removeFromCart} = useContext(ShopContext);
   const navigate = useNavigate();
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState('');
@@ -181,10 +182,13 @@ const Product = () => {
             <p className='border px-5 py-3 text-sm'>Reviews(108)</p>
         </div>
         <div className='flex flex-col gap-4 border px-6 py-5 text-sm text-gray-500'>
-            <p>A website that </p>
-            <p></p>
+            <p>A website that serves as a comprehensive online platform facilitating the seamless buying and selling of a wide range of products. From consumer electronics and clothing to home goods and more, users can easily browse, select, and purchase items from the comfort of their homes, with secure payment gateways and efficient delivery services enhancing the overall shopping experience.</p>
+            <p> E-commerce websites not only display products and services with detailed descriptions, images, and specifications but also offer user reviews, ratings, and recommendations to guide purchasing decisions. These platforms often integrate with various marketing tools, offer personalized user experiences, and provide insights into the latest trends, helping consumers make informed decisions in real-time.</p>
         </div>
       </div>
+      {/* Related Products */}
+        <RelatedProducts category={productData.category} subCategory={productData.subCategory} 
+      />
     </div>
   );
 };
