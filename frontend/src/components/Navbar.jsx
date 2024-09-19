@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { assets } from '../assets/assets';
 import { Link, NavLink } from 'react-router-dom';
 import { IoMdClose } from "react-icons/io";
+import { ShopContext } from '../context/ShopContext';
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  
+  const { getCartCount } = useContext(ShopContext);
+
   return (
     <div className='relative flex items-center justify-between py-5 font-medium'>
-      <Link to='/' ><img src={assets.logo} className='w-36' alt='Logo' /></Link>
+      <Link to='/'><img src={assets.logo} className='w-36' alt='Logo' /></Link>
 
       {/* Desktop Navigation */}
       <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
@@ -32,7 +34,6 @@ const Navbar = () => {
 
       {/* Right-side icons */}
       <div className='flex items-center gap-6'>
-        
         <div className='group relative'>
           <img src={assets.profile_icon} className='w-5 cursor-pointer' alt='Profile' />
           <div className='group-hover:block hidden absolute right-0 pt-4'>
@@ -43,10 +44,12 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <Link to='./cart' className='relative'>
+
+        <Link to='/cart' className='relative'>
           <img src={assets.cart_icon} className='w-5 min-w-5' alt='Cart' />
-          <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>10</p>
+          <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>{getCartCount()}</p>
         </Link>
+
         <img
           onClick={() => setVisible(!visible)}
           src={assets.menu_icon}
@@ -57,12 +60,10 @@ const Navbar = () => {
 
       {/* Sidebar menu for small screens */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-64 bg-white shadow-lg transform ${
-          visible ? 'translate-x-0' : 'translate-x-full'
-        } transition-transform duration-300 ease-in-out z-50`}
+        className={`fixed top-0 right-0 bottom-0 w-64 bg-white shadow-lg transform ${visible ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out z-50`}
       >
         <div className='flex justify-end p-5'>
-           <IoMdClose onClick={() => setVisible(false)} className='w-5 cursor-pointer'/>
+          <IoMdClose onClick={() => setVisible(false)} className='w-5 cursor-pointer' />
         </div>
         <ul className='flex flex-col gap-5 text-sm text-gray-700 px-5'>
           <NavLink to='/' className='flex flex-col' onClick={() => setVisible(false)}>
