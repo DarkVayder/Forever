@@ -32,6 +32,28 @@ const ShopContextProvider = (props) => {
         });
     };
 
+    // Function to calculate total amount in the cart
+    const getCartAmount = async () => {
+        let totalAmount = 0;
+
+        for (const itemId in cartItems) {
+            const itemInfo = products.find((product) => product._id === itemId);
+            if (!itemInfo) continue;
+
+            for (const size in cartItems[itemId]) {
+                try {
+                    if (cartItems[itemId][size] > 0) {
+                        totalAmount += itemInfo.price * cartItems[itemId][size];
+                    }
+                } catch (error) {
+                    console.error(`Error calculating cart amount: ${error.message}`);
+                }
+            }
+        }
+
+        return totalAmount;
+    };
+
     // Function to remove an item from the cart
     const removeFromCart = (itemId, size) => {
         setCartItems((prevCartItems) => {
@@ -74,7 +96,8 @@ const ShopContextProvider = (props) => {
         addToCart,
         removeFromCart,
         clearCart,
-        getCartCount
+        getCartCount,
+        getCartAmount,
     };
 
     return (

@@ -5,6 +5,8 @@ import { FaTrash, FaArrowLeft } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import Title from '../components/Title';
+import CartTotal from '../components/CartTotal';
+
 const Cart = () => {
   const { cartItems, removeFromCart, products } = useContext(ShopContext);
   const navigate = useNavigate();
@@ -74,6 +76,11 @@ const Cart = () => {
             );
           })
         ))}
+      </div>
+      <div className='flex justify-end my-20'>
+        <div className='w-full sm:w-[450px]'>
+          <CartTotal />
+        </div>
       </div>
 
       {/* Toast Notification */}
