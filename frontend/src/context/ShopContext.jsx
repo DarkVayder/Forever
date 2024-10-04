@@ -1,6 +1,8 @@
 import { createContext, useState } from 'react';
 import { products } from '../assets/assets';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 
 export const ShopContext = createContext();
 
@@ -8,7 +10,8 @@ const ShopContextProvider = (props) => {
     const currency = '$';
     const delivery_fee = 8;
     const [cartItems, setCartItems] = useState({});
-
+    const navigate = useNavigate();
+    
     // Function to add an item to the cart
     const addToCart = (itemId, size) => {
         if (!size) {
@@ -98,6 +101,7 @@ const ShopContextProvider = (props) => {
         clearCart,
         getCartCount,
         getCartAmount,
+        navigate
     };
 
     return (
