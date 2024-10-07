@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import Title from '../components/Title';
 
 const PrivacyPolicy = () => {
 
@@ -16,7 +17,9 @@ const PrivacyPolicy = () => {
           <FaArrowLeft className="mr-2" /> Back
         </button>
       </div>
-      <h1 className="text-4xl font-bold mb-6 text-center">Privacy Policy</h1>
+      <div className="text-4xl font-bold mb-6 text-center">
+        <Title text1={'Privacy'} text2={'Policy'} />
+      </div>
       <p className="text-gray-700 mb-4">
         At 4ever, we value your privacy and are committed to protecting your personal information. This Privacy Policy outlines the types of data we collect, how we use it, and your rights regarding that data.
       </p>

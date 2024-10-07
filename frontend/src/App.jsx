@@ -14,6 +14,7 @@ import Footer from './components/Footer'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import Delivery from './pages/Delivery'
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='/orders' element={<Order />} />
         <Route path='/privacypolicy' element={<PrivacyPolicy />}/>
+        <Route path='/delivery' element={<Delivery/>} />
       </Routes>
       <Footer />
     </div>
