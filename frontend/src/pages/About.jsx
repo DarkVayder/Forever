@@ -57,12 +57,11 @@ const About = () => {
           <FaArrowLeft className="mr-2" /> Back
         </button>
       </div>
-      <div className='text-4xl text-center'>
+      <div className='text-4xl text-center mb-4'>
       <Title text1={'About'} text2={'Us'} />
       </div>
       {/* Brand Story Section */}
       <section className="mb-12 text-center">
-        <h2 className="text-4xl font-bold mb-4">Our Story</h2>
         <p className="text-lg text-gray-700 max-w-3xl mx-auto">
           At 4ever, we believe in delivering high-quality, sustainable fashion that makes you look good and feel even better.
           Our journey began in 2015 with a mission to provide stylish yet eco-friendly clothing for modern, conscious consumers.
