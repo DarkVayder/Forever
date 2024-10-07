@@ -3,6 +3,8 @@ import { FaFacebook, FaInstagram, FaPinterest, FaPhone, FaEnvelope, FaMapMarkerA
 import { FaXTwitter } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 import Title from '../components/Title';
+import { assets } from '../assets/assets';
+import NewsLetterBox from '../components/NewsLetterBox'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,15 +18,15 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value
-    });
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // form submission to a backend or email service.
+    // Placeholder for form submission (backend or email service integration)
     console.log(formData);
     setSubmitted(true);
   };
@@ -34,7 +36,7 @@ const Contact = () => {
       {/* Back Button */}
       <div className="mb-4">
         <button
-          onClick={() => navigate(-1)} 
+          onClick={() => navigate(-1)}
           className="flex items-center text-gray-700 hover:underline font-medium"
         >
           <FaArrowLeft className="mr-2" /> Back
@@ -42,8 +44,25 @@ const Contact = () => {
       </div>
 
       <h2 className="text-4xl font-bold text-center mb-8">
-      <Title text1={'Reach out'} text2={'to us'} />
+        <Title text1="Reach out" text2="to us" />
       </h2>
+
+      {/* Contact Information Section */}
+      <div className="my-10 flex flex-col justify-center md:flex-row gap-10 mb-28">
+        <img className="w-full md:max-w-[480px]" src={assets.contact_img} alt="Contact Us" />
+        <div className="flex flex-col justify-center items-start gap-6 ">
+          <p className="font-semibold text-xl text-gray-600">Our Store</p>
+          <p className="text-gray-500">
+            Store Street <br /> Store 180, Abuja, Nigeria
+          </p>
+          <p className="text-gray-500">
+            No: (234) 123 456 789 <br /> Email: support@4ever.com
+          </p>
+          <p className="text-gray-600 font-semibold text-xl">Careers at 4ever</p>
+          <p className="text-gray-500">Learn more about our teams and job openings.</p>
+          <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Expore Jobs</button>
+        </div>
+      </div>
 
       {/* Contact Form */}
       <section className="mb-12">
@@ -55,7 +74,9 @@ const Contact = () => {
         ) : (
           <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
             <div className="mb-4">
-              <label htmlFor="name" className="block text-lg font-medium text-gray-700">Name</label>
+              <label htmlFor="name" className="block text-lg font-medium text-gray-700">
+                Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -67,7 +88,9 @@ const Contact = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-lg font-medium text-gray-700">Email</label>
+              <label htmlFor="email" className="block text-lg font-medium text-gray-700">
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -79,7 +102,9 @@ const Contact = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="message" className="block text-lg font-medium text-gray-700">Message</label>
+              <label htmlFor="message" className="block text-lg font-medium text-gray-700">
+                Message
+              </label>
               <textarea
                 id="message"
                 name="message"
@@ -88,7 +113,7 @@ const Contact = () => {
                 rows="4"
                 className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500"
                 required
-              ></textarea>
+              />
             </div>
             <button
               type="submit"
@@ -121,14 +146,14 @@ const Contact = () => {
       <section className="text-center">
         <h3 className="text-2xl font-semibold mb-4">Follow Us</h3>
         <div className="flex justify-center space-x-6 text-3xl">
-          <a href="#" className="text-blue-600 hover:text-blue-800"><FaFacebook /></a>
-          <a href="#" className="text-pink-600 hover:text-pink-800"><FaInstagram /></a>
-          <a href="#" className="text-gray-800 hover:text-gray-500"><FaXTwitter /></a>
-          <a href="#" className="text-red-800 hover:text-red-500"><FaPinterest /></a>
+          <a href="#" className="text-blue-600 hover:text-blue-800" aria-label="Facebook"><FaFacebook /></a>
+          <a href="#" className="text-pink-600 hover:text-pink-800" aria-label="Instagram"><FaInstagram /></a>
+          <a href="#" className="text-gray-800 hover:text-gray-500" aria-label="Twitter"><FaXTwitter /></a>
+          <a href="#" className="text-red-800 hover:text-red-500" aria-label="Pinterest"><FaPinterest /></a>
         </div>
       </section>
 
-      {/* Map*/}
+      {/* Map */}
       <section className="mt-12">
         <iframe
           title="Store Location"
@@ -138,6 +163,7 @@ const Contact = () => {
           loading="lazy"
         ></iframe>
       </section>
+      <NewsLetterBox />
     </div>
   );
 };
