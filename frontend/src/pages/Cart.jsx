@@ -33,10 +33,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mx-auto py-8">
-      <div className='text-2xl mb-3'>
-        <Title text1={'YOUR'} text2={'CART'} />     </div>
-      
+    <div className="container mx-auto py-8">  
       {/* Back Button */}
       <div className="mb-4">
         <button
@@ -46,7 +43,9 @@ const Cart = () => {
           <FaArrowLeft className="mr-2" /> Back
         </button>
       </div>
-
+      <div className='text-2xl mb-3'>
+        <Title text1={'YOUR'} text2={'CART'} />     
+    </div>
       {/* Cart Items */}
       <div className="space-y-6">
         {Object.keys(cartItems).map((itemId) => (
