@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaFacebook, FaInstagram, FaPinterest, FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowLeft } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
+import Title from '../components/Title';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -40,7 +41,9 @@ const Contact = () => {
         </button>
       </div>
 
-      <h2 className="text-4xl font-bold text-center mb-8">Contact Us</h2>
+      <h2 className="text-4xl font-bold text-center mb-8">
+      <Title text1={'Reach out'} text2={'to us'} />
+      </h2>
 
       {/* Contact Form */}
       <section className="mb-12">

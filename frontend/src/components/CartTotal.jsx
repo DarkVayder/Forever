@@ -19,7 +19,7 @@ const CartTotal = () => {
   return (
     <div className='w-full'>
       <div className='text-2xl'>
-        <Title text1={'CART TOTAL'} text2={'TOTAL'} />
+        <Title text1={'CART'} text2={'TOTAL'} />
       </div>
 
       <div className='flex flex-col gap-2 mt-2 text-sm'>

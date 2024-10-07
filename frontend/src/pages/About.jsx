@@ -3,6 +3,7 @@ import { FaFacebook, FaInstagram, FaPinterest } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import Title from '../components/Title';
 
 // Sample customer reviews
 const reviews = [
@@ -56,7 +57,9 @@ const About = () => {
           <FaArrowLeft className="mr-2" /> Back
         </button>
       </div>
-
+      <div className='text-4xl text-center'>
+      <Title text1={'About'} text2={'Us'} />
+      </div>
       {/* Brand Story Section */}
       <section className="mb-12 text-center">
         <h2 className="text-4xl font-bold mb-4">Our Story</h2>
@@ -76,7 +79,7 @@ const About = () => {
       <section className="mb-12 text-center">
         <h3 className="text-3xl font-semibold mb-6">What Our Customers Say</h3>
         <div className="relative bg-white shadow-lg rounded-lg p-6 max-w-lg mx-auto">
-          <p className="text-xl text-gray-800 italic mb-2">"{reviews[currentReviewIndex].review}"</p>
+          <p className="text-xl text-gray-800 italic mb-2">{reviews[currentReviewIndex].review}</p>
           <p className="text-lg text-gray-600">- {reviews[currentReviewIndex].name}</p>
           <div className="flex justify-center mt-4 space-x-1">
             {Array(reviews[currentReviewIndex].rating)
