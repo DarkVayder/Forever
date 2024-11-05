@@ -162,7 +162,7 @@ const Product = () => {
         </div>
         <div className="border px-6 py-5 text-sm text-gray-500">
           <p>A platform for seamless online shopping...</p>
-          <p>E-commerce websites provide detailed descriptions, images, reviews, and ratings...</p>
+          <p>E-commerce websites provide detailed descriptions, images, reviews, and ratings.</p>
         </div>
       </div>
 
