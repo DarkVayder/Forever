@@ -12,7 +12,7 @@ app.use(cors())
 // Mock API for products
 
 app.get('/',(req, res) => {
-    res.send('API is working')
+    res.send('API is working!!')
 })
 
 app.listen(port, () => console.log("server started on PORT : '+ port"))
