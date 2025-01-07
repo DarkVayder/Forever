@@ -1,20 +1,23 @@
 
-//Route for login user
+
+//Route for user to login
 const loginUser = async (req, res) => {
-    
-    
+
+
 
 }
 
-//Route for register new user
+//Route for user to register
 const registerUser = async (req, res) => {
 
-    
+    res.json({msg:"Reg API is working"})
 
 }
 
-//Route for Admin login
+//Route for admin to login
 const adminLogin = async (req, res) => {
+
+
 
 }
 
