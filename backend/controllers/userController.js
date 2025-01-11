@@ -83,29 +83,21 @@ const adminLogin = async (req, res) => {
 
         // Validate input
         if (!email || !password) {
-            return res.status(400).json({ success: false, message: "All fields are required!" });
+            return res.status(400).json({ success: false, message: "Email and password are required." });
         }
 
-        // Check admin existence
-        const admin = await userModel.findOne({ email, isAdmin: true });
-        if (!admin) {
-            return res.status(401).json({ success: false, message: "Unauthorized access!" });
+        // Check credentials
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            // Generate JWT token
+            const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+            return res.json({ success: true, token });
+        } else {
+            return res.status(401).json({ success: false, message: "Invalid email or password." });
         }
-
-        // Verify password
-        const isMatch = await bcrypt.compare(password, admin.password);
-        if (!isMatch) {
-            return res.status(401).json({ success: false, message: "Invalid email or password!" });
-        }
-
-        // Generate token
-        const token = createToken(admin._id);
-
-        res.json({ success: true, token, admin: { id: admin._id, name: admin.name, email: admin.email } });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Server error!" });
     }
 };
-
 export { loginUser, registerUser, adminLogin };
