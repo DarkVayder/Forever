@@ -1,7 +1,7 @@
 import React from 'react';
 import { assets } from "../assets/assets";
 
-const Navbar = () => {
+const Navbar = ({setToken}) => {
   return (
     <nav className="flex items-center justify-between py-3 px-4 sm:px-[4%] bg-gray-100">
       {/* Logo */}
@@ -13,6 +13,7 @@ const Navbar = () => {
 
       {/* Logout Button */}
       <button 
+        onClick={()=> setToken('')}
         className="bg-gray-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-700 transition-colors"
       >
         Log Out
