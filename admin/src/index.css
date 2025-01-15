@@ -6,3 +6,9 @@
 *{
     font-family: outfit;
 }
+
+select, input, textarea {
+    border: 1px solid #c2c2c2;
+    outline-color: #6d6a6b;
+    border-radius: 4px;
+}
