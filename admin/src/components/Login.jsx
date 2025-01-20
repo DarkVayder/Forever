@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types"; 
-import axios from "axios";
-import { backendUrl } from "../App";
+import PropTypes from "prop-types";
+import axiosInstance from "../axiosInstance"; 
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; 
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");
@@ -12,11 +11,15 @@ const Login = ({ setToken }) => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${backendUrl}/api/user/admin`, { email, password });
+      const response = await axiosInstance.post(`/api/user/admin`, { email, password });
 
       if (response.data.success) {
-        // Set token and show success toast notification
-        setToken(response.data.token);
+        // Save token in localStorage and set it in parent state
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        setToken(token);
+
+        // Show success toast notification
         toast.success("Login successful! Redirecting to the admin panel...");
       } else {
         // Show error toast notification

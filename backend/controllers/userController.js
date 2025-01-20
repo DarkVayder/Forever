@@ -89,7 +89,7 @@ const adminLogin = async (req, res) => {
         // Check credentials
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
             // Generate JWT token
-            const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+            const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
             return res.json({ success: true, token });
         } else {
