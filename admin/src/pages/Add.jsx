@@ -153,9 +153,9 @@ const Add = ({ token }) => {
               value={subCategory}
               onChange={(e) => setSubCategory(e.target.value)}
             >
-              <option value="Topwear">Topwear</option>
-              <option value="Bottomwear">Bottomwear</option>
-              <option value="Winterwear">Winterwear</option>
+              <option value="Topwear">Top wear</option>
+              <option value="Bottomwear">Bottom wear</option>
+              <option value="Winterwear">Winter wear</option>
             </select>
           </div>
         </div>
