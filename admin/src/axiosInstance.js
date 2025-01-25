@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/", 
+  baseURL: "http://localhost:5000/", // API Base URL
 });
 
-// Add a request interceptor for attaching the token
+// Request Interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token"); 
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -16,31 +16,36 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Add a response interceptor for handling 401 errors
+// Response Interceptor for 401 handling
 axiosInstance.interceptors.response.use(
-  (response) => response,
+  (response) => response, // Pass through success responses
   async (error) => {
     const originalRequest = error.config;
 
-    // If a 401 error occurs, try refreshing the token
     if (error.response && error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true; 
+      originalRequest._retry = true; // Prevent infinite retries
+
+      const refreshToken = localStorage.getItem("refreshToken");
+      if (!refreshToken) {
+        console.error("Refresh token is missing. Redirecting to login.");
+        window.location.href = "/login"; // Redirect to login
+        return Promise.reject(error);
+      }
+
       try {
         const { data } = await axios.post("http://localhost:5000/api/auth/refresh", {
-          email: "mrabiu321@gmail.com", 
+          refreshToken,
         });
 
-        const { token } = data;
+        const { accessToken } = data;
+        localStorage.setItem("token", accessToken); // Save new access token
+        originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
 
-        // Save the new token
-        localStorage.setItem("token", token);
-
-        // Retry the original request with the new token
-        originalRequest.headers["Authorization"] = `Bearer ${token}`;
-        return axiosInstance(originalRequest);
+        return axiosInstance(originalRequest); // Retry original request
       } catch (refreshError) {
         console.error("Token refresh failed:", refreshError);
-        throw refreshError;
+        window.location.href = "/login"; // Redirect to login
+        return Promise.reject(refreshError);
       }
     }
 
